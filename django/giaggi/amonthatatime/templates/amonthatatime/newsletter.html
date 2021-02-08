@@ -1,0 +1,53 @@
+<html>
+<head>
+{% load static %}
+{% load template_extrafilter %}
+
+<title>A Mont at a Time</title>
+<link rel="stylesheet" type="text/css" href="{% static 'amonthatatime/css/newsletter.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+</head>
+<body>
+  <p align="center", style="margin-bottom: 4em;">
+    <img width="160" height="100" src="{% static 'amonthatatime/images/website/calvinandhobbes.png' %}">
+    <br /> <span style="color:#B02E25;font-size:2em;">A Month at a Time</span>
+    <br /><span style="color:#4D4D4D;font-size:1.3em;">{{post.month | safe | title }}</span>
+  </p>
+
+
+
+  <p class="navigation" id="WHATSAPP"> <span style="color:#EB4034">WHATSAPP</span> / <a style="color:#4D4D4D;" href="#GRAM">GRAM</a> / <a style="color:#4D4D4D;" href="#MEDLEY">MEDLEY</a> </p>
+
+  <p class="mytitle"> {{post.title | safe }}
+  </p>
+
+  {{post.whatsapp | safe }}
+
+
+  <hr align='left'>
+
+  <p class="navigation" id="GRAM"> <a style="color:#4D4D4D;" href="#WHATSAPP">WHATSAPP</a> / <span style="color:#EB4034">GRAM</span>  / <a style="color:#4D4D4D;" href="#MEDLEY">MEDLEY</a> </p>
+
+  <!-- Photo Grid -->
+
+  {{ photos|picturegrid:post.photo_columns }}
+
+
+
+
+  <hr align='left'>
+
+  <p class="navigation" id="MEDLEY"> <a style="color:#4D4D4D;" href="#WHATSAPP">WHATSAPP</a> / <a style="color:#4D4D4D;" href="#GRAM">GRAM</a> / <span style="color:#EB4034">MEDLEY</span>  </p>
+
+
+  {{post.medley | safe }}
+
+
+
+</body>
+</html>
