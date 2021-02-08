@@ -1,1 +1,45 @@
-Hello password_validation
+<html>
+<head>
+
+{% load static %}
+
+<title>A Mont at a Time</title>
+<link rel="icon" href="{% static 'amonthatatime/images/website/calvinandhobbes.png' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'amonthatatime/css/archive.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+  <p align="center">
+    <span style="color:#B02E25;font-size:1.5em;">A Month At A Time</span>
+  </p>
+
+<div>
+  <img width="130" height="81" src="{% static 'amonthatatime/images/website/calvinandhobbes.png' %}">
+</div>
+
+<div class="menu" align="center">
+  <!--  <a style="color:#4D4D4D;" href="../newsletter/2021/january.html">This Month</a> -->
+  Archive
+  <!--   <a style="color:#4D4D4D;" href="#MEDLEY">About</a> -->
+</div>
+
+{% for post in latest_posts %}
+<div class="post">
+  <h3> {{post.title | safe}}
+    <br> <span style="opacity:0.6; font-size:0.8em">{{post.month | safe}} {{post.year | safe}} </span>
+  </h3>
+  <p style="opacity: 0.7;"> {{post.whatsapp | safe | truncatewords:50 }} </p>
+  <div class="right">
+    <a style="color:#B02E25;" href="/amonthatatime/{{post.year}}/{{post.month}}/" target="">Open</a>
+  </div>
+</div>
+<hr>
+{% endfor %}
+
+
+
+
+</body>
