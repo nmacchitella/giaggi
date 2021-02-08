@@ -14,6 +14,9 @@ from pathlib import Path
 from django.conf import settings
 from django.conf.urls.static import static
 import os
+import psycopg2
+import dj_database_url
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -102,6 +105,11 @@ WSGI_APPLICATION = 'giaggi.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+#os.system('env DATABASE_URL=$(heroku config:get DATABASE_URL -a giaggi)')
+#DATABASE_URL = os.environ['DATABASE_URL']
+#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 
 DATABASES = {
     'default': {
