@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import os
-
+import base64
 
 STATUS = (
     (0,"Draft"),
@@ -66,10 +66,13 @@ class Post(models.Model):
 class PostImage(models.Model):
     post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)
     grams = models.FileField(upload_to = newletter_gram_path)
+    grams_string=models.TextField(default='na')
     caption = models.TextField(default=0)
 
+    def save(self, *args, **kwargs):
 
-
+        self.grams_string = base64.b64encode(self.grams.open('rb').read()).decode('utf-8')
+        super(PostImage, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.post.title

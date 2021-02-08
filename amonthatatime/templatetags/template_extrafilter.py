@@ -16,7 +16,7 @@ def picturegrid (photos, arg):
         else:
             column=arg
         for j in range(0,column):
-            html=html+'<div class="column"> <img src="{url}" style="width:100%"> </div>'.format(url=photos[i*arg+j].grams.url)
+            html=html+'<div class="column"> <img src="data:image/png;base64,{base}"> </div>'.format(base=photos[i*arg+j].grams_string)
         html=html+'</div>'
 
     return mark_safe(html)
