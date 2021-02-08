@@ -1,1 +1,1 @@
-web: gunicorn giaggi.giaggi.wsgi
+web: gunicorn giaggi.wsgi
