@@ -13,9 +13,10 @@
 <!--<meta property="og:url" content="https://www.example.com/webpage/" /> -->
 <meta property="og:description" content="{{post.title | safe | title }}">
 <meta property="og:image" content="{% static 'amonthatatime/images/website/calvinandhobbes.png' %}">
-<meta property="og:type" content="article" />
+<meta property="og:type" content="article" /> <!-- The unsolicited stream of consciousness I am already regretting -->
 
-<!-- The unsolicited stream of consciousness I am already regretting -->
+
+
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E63VBW043G"></script>
@@ -65,7 +66,22 @@
 
   {{post.medley | safe }}
 
+<div class="footer-basic">
+  <hr align='left'>
+        <footer>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="/amonthatatime/" target="">Archive</a></li>
+                <!--<li class="list-inline-item"><a href="#">Subscribe</a></li>  -->
+            </ul>
+            <!-- <p class="copyright">A month at a Time</p> -->
+        </footer>
+    </div>
 
+<!--  <div class="menu" align="center">
+     <a style="color:#4D4D4D;" href="../newsletter/2021/january.html">This Month</a>
+    Archive
+    <a style="color:#4D4D4D;" href="#MEDLEY">About</a>
+  </div>-->
 
 </body>
 </html>
