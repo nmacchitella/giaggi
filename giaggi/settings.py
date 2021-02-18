@@ -163,3 +163,7 @@ STATIC_URL = '/static/'
 # Configure Django App for Heroku.
 import django_on_heroku
 django_on_heroku.settings(locals())
+
+# Override production variables if DJANGO_DEVELOPMENT env variable is set
+if os.environ.get('DJANGO_DEVELOPMENT'):
+    from .settings_dev import *  # or specific overrides
