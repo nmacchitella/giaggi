@@ -42,15 +42,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # heroku config:set DJANGO_SECRET_KEY="@=#7ld6fczj-cj)$&qm(5%$y&n0o7-8j2ixkbsnyj(d*r4z=)o"
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '@=#7ld6fczj-cj)$&qm(5%$y&n0o7-8j2ixkbsnyj(d*r4z=)o')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+#, '@=#7ld6fczj-cj)$&qm(5%$y&n0o7-8j2ixkbsnyj(d*r4z=)o')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = False
+#DEBUG = os.environ.get('DEBUG', False) == 'True'
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'giaggi.herokuapp.com']
 
 
 # Application definition
@@ -69,8 +70,10 @@ INSTALLED_APPS = [
 
 MEDIA_URL = '/amonthatatime/static/amonthatatime/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'amonthatatime/static/amonthatatime/images/')
-X_FRAME_OPTIONS = 'SAMEORIGIN'
-
+X_FRAME_OPTIONS = 'DENY'
+SECURE_SSL_REDIRECT=False
+SESSION_COOKIE_SECURE=False
+CSRF_COOKIE_SECURE=False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
