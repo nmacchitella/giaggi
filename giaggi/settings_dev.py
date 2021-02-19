@@ -70,10 +70,7 @@ INSTALLED_APPS = [
 
 MEDIA_URL = '/amonthatatime/static/amonthatatime/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'amonthatatime/static/amonthatatime/images/')
-X_FRAME_OPTIONS = 'DENY'
-SECURE_SSL_REDIRECT=False
-SESSION_COOKIE_SECURE=False
-CSRF_COOKIE_SECURE=False
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
