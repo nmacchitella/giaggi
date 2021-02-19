@@ -45,6 +45,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 #, '@=#7ld6fczj-cj)$&qm(5%$y&n0o7-8j2ixkbsnyj(d*r4z=)o')
 
+FROM_EMAIL = 'nm@nicolamacchitella.com' # replace with your address
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -70,10 +73,7 @@ INSTALLED_APPS = [
 
 MEDIA_URL = '/amonthatatime/static/amonthatatime/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'amonthatatime/static/amonthatatime/images/')
-X_FRAME_OPTIONS = 'DENY'
-SECURE_SSL_REDIRECT=False
-SESSION_COOKIE_SECURE=False
-CSRF_COOKIE_SECURE=False
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

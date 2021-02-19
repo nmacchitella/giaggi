@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import os
 import base64
+from .pythonsupport.models import newletter_gram_path
 
 STATUS = (
     (0,"Draft"),
@@ -33,11 +34,6 @@ MONTH = (
 
 
 
-
-#functios to get the right path to save images of newsletter posts
-def newletter_gram_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/post<year>/post<month>/<filename>
-    return 'newsletter/{year}/{month}/{file}'.format(year=instance.post.year, month=instance.post.month, file=filename)
 
 
 # Create your models here.
@@ -76,3 +72,13 @@ class PostImage(models.Model):
 
     def __str__(self):
         return self.post.title
+
+
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+    conf_num = models.CharField(max_length=15)
+    confirmed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.email + " (" + ("not " if not self.confirmed else "") + "confirmed)"

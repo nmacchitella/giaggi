@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, PostImage
+from .models import Post, PostImage,Subscriber
 from django_summernote.admin import SummernoteModelAdmin
 
 class PostImageAdmin(admin.StackedInline):
@@ -29,3 +29,4 @@ class PostImageAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Post, PostAdmin)
+admin.site.register(Subscriber)

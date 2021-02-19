@@ -9,5 +9,9 @@ urlpatterns = [
     path('', views.archive, name='archive'),
     # ex: /2021/january/
     path('<int:year>/<str:month>/', views.newsletter, name='newsletter'),
+    #subscriberpage
+    path('subcribe/', views.subcribe, name='subcribe'),
+    path('confirm/', views.confirm, name='confirm'),
+    path('delete/', views.delete, name='delete'),
 
 ]
