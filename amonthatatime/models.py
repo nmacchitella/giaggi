@@ -2,6 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 import os
 import base64
+from .pythonsupport.models import newletter_gram_path
+from django.conf import settings
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import django.template.loader as t_loader
+from cloudinary.models import CloudinaryField
+import cloudinary
 
 STATUS = (
     (0,"Draft"),
@@ -31,14 +38,9 @@ MONTH = (
     ("december","December"),
     )
 
-
-
-
-#functios to get the right path to save images of newsletter posts
-def newletter_gram_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/post<year>/post<month>/<filename>
-    return 'newsletter/{year}/{month}/{file}'.format(year=instance.post.year, month=instance.post.month, file=filename)
-
+FOLDERS = (
+    ("general","general"),
+)
 
 # Create your models here.
 class Post(models.Model):
@@ -62,17 +64,79 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def send(self, request):
+
+        photos = PostImage.objects.filter(post=self)
+        contents = t_loader.get_template('amonthatatime/newsletter.html').render({'post':self,'photos':photos,})
+        subscribers = Subscriber.objects.filter(confirmed=True)
+        sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
+
+        for sub in subscribers:
+            message = Mail(
+                    from_email=settings.FROM_EMAIL,
+                    to_emails=sub.email,
+                    subject='A month at a Time - {month} {year}: {title}'.format(month=self.month ,year=self.year,title=self.title),
+                    html_content=contents + (
+                        '<br><a href="{}/delete/?email={}&conf_num={}">Unsubscribe</a>.').format(
+                            request.build_absolute_uri('/delete/'),
+                            sub.email,
+                            sub.conf_num))
+            sg.send(message)
+
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)
     grams = models.FileField(upload_to = newletter_gram_path)
-    grams_string=models.TextField(default='na')
+    urls=models.TextField(default='na')
     caption = models.TextField(default=0)
 
     def save(self, *args, **kwargs):
-
-        self.grams_string = base64.b64encode(self.grams.open('rb').read()).decode('utf-8')
+        cloudinary.config( cloud_name = "giaggi", api_key = "826931829168994", api_secret = os.environ.get('CLOUDINARY_API_SECRET') )
+        upload=cloudinary.uploader.upload(self.grams.open(),
+                                            folder=newletter_gram_path(self,self.grams.name),
+                                            use_filename=True,
+                                            unique_filename=False,
+                                            overwrite=True)
+        self.urls=upload['url']
         super(PostImage, self).save(*args, **kwargs)
+
 
     def __str__(self):
         return self.post.title
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+    conf_num = models.CharField(max_length=15)
+    confirmed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.email + " (" + ("not " if not self.confirmed else "") + "confirmed)"
+
+
+class Newsletter(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    subject = models.CharField(max_length=150)
+    contents = models.FileField(upload_to='htmls')
+
+    def __str__(self):
+        return self.subject + " " + self.created_at.strftime("%B %d, %Y")
+
+
+
+
+
+class Image(models.Model):
+    folder=models.CharField(max_length=20, choices=FOLDERS)
+    photo = models.FileField(upload_to = 'amonthatatime/images/{folder}'.format(folder=folder))
+    urls=models.TextField(default='na')
+
+    def save(self, *args, **kwargs):
+        cloudinary.config( cloud_name = "giaggi", api_key = "826931829168994", api_secret = os.environ.get('CLOUDINARY_API_SECRET') )
+        upload=cloudinary.uploader.upload(self.photo.open(),
+                                            folder='amonthatatime/images/{folder}'.format(folder=self.folder),
+                                            use_filename=True,
+                                            unique_filename=False,
+                                            overwrite=True)
+        self.urls=upload['url']
+        super(Image, self).save(*args, **kwargs)
