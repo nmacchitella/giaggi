@@ -51,12 +51,11 @@ FROM_EMAIL = os.environ.get('FROM_EMAIL') # replace with your address
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 
 
-#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'giaggi.herokuapp.com']
