@@ -78,7 +78,8 @@ INSTALLED_APPS = [
 
 
 MEDIA_URL = '/amonthatatime/static/amonthatatime/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'amonthatatime/static/amonthatatime/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'amonthatatime/static/amonthatatime/images/')
+
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MIDDLEWARE = [
