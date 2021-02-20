@@ -11,7 +11,11 @@ from .models import Subscriber
 from .forms import SubscriberForm
 from .pythonsupport.views import random_digits
 
+#import cloudinary
+#import cloudinary.uploader
+#import cloudinary.api
 
+#{% load cloudinary %}
 
 
 
@@ -25,8 +29,8 @@ def archive(request):
     context = {'latest_posts': latest_posts}
     return render(request, 'amonthatatime/archive.html', context)
 
-#newsetter//post
-def newsletter(request, year, month):
+#post
+def post(request, year, month):
     post = Post.objects.get(month=month,year=year,status=1)
     photos = PostImage.objects.filter(post=post)
 
@@ -34,7 +38,7 @@ def newsletter(request, year, month):
         'post': post,
         'photos':photos,
         }
-    return render(request, 'amonthatatime/newsletter.html', context)
+    return render(request, 'amonthatatime/post.html', context)
 
 #Subscribe
 @csrf_exempt
