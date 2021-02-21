@@ -113,7 +113,6 @@ class PostImage(models.Model):
         self.urls=upload['url']
         super(PostImage, self).save(*args, **kwargs)
 
-
     def __str__(self):
         return self.post.title
 
