@@ -2,13 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 import os
 import base64
-from .pythonsupport.models import newletter_gram_path
+from .pythonsupport.models import newletter_gram_path, folder_upload
 from django.conf import settings
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import django.template.loader as t_loader
 from cloudinary.models import CloudinaryField
 import cloudinary
+import datetime
+
 
 STATUS = (
     (0,"Draft"),
@@ -46,6 +48,7 @@ FOLDERS = (
 class Post(models.Model):
     year = models.IntegerField(default='2021')
     month = models.CharField(max_length=20, choices=MONTH)
+    month_number=models.IntegerField(default='1')
     title = models.CharField(max_length=200)
     whatsapp = models.TextField()
     medley = models.TextField()
@@ -83,6 +86,12 @@ class Post(models.Model):
                             sub.conf_num))
             sg.send(message)
 
+    def save(self, *args, **kwargs):
+        self.month_number=datetime.datetime.strptime(self.month, "%B").month
+        super(Post, self).save(*args, **kwargs)
+
+
+
 
 class PostImage(models.Model):
     post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)
@@ -91,6 +100,10 @@ class PostImage(models.Model):
     caption = models.TextField(default=0)
 
     def save(self, *args, **kwargs):
+        #if os.environ.get('DJANGO_DEVELOPMENT')=="True":
+        #    self.urls=self.grams.url
+        #    super(PostImage, self).save(*args, **kwargs)
+        #else:
         cloudinary.config( cloud_name = "giaggi", api_key = "826931829168994", api_secret = os.environ.get('CLOUDINARY_API_SECRET') )
         upload=cloudinary.uploader.upload(self.grams.open(),
                                             folder=newletter_gram_path(self,self.grams.name),
@@ -128,10 +141,16 @@ class Newsletter(models.Model):
 
 class Image(models.Model):
     folder=models.CharField(max_length=20, choices=FOLDERS)
-    photo = models.FileField(upload_to = 'amonthatatime/images/{folder}'.format(folder=folder))
+    title=models.CharField(max_length=40, default='na')
+    photo = models.FileField(upload_to = folder_upload)
     urls=models.TextField(default='na')
 
+
     def save(self, *args, **kwargs):
+    #    if os.environ.get('DJANGO_DEVELOPMENT')=="True":
+    #        self.urls=self.photo.url
+    #        super(Image, self).save(*args, **kwargs)
+    #    else:
         cloudinary.config( cloud_name = "giaggi", api_key = "826931829168994", api_secret = os.environ.get('CLOUDINARY_API_SECRET') )
         upload=cloudinary.uploader.upload(self.photo.open(),
                                             folder='amonthatatime/images/{folder}'.format(folder=self.folder),

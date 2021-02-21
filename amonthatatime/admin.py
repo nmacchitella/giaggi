@@ -25,6 +25,7 @@ class PostAdmin(SummernoteModelAdmin):
        model = Post
 
     actions = [send_newsletter]
+    exclude = ('month_number',)
 
 
 class PostImageAdmin(admin.ModelAdmin):
@@ -33,6 +34,8 @@ class PostImageAdmin(admin.ModelAdmin):
 
 class ImageAdmin(admin.ModelAdmin):
     exclude = ('urls',)
+    list_display = ('folder', 'title', 'urls')
+
 
 
 

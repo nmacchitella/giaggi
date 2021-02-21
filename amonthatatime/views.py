@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post, PostImage
+from .models import Post, PostImage, Image
 import math
 
 from django.conf import settings
@@ -16,18 +16,21 @@ from .pythonsupport.views import random_digits
 
 #archive//all month
 def archive(request):
-    latest_posts = Post.objects.filter(status=1).order_by('year','month')[:12]
-    context = {'latest_posts': latest_posts}
+    latest_posts = Post.objects.filter(status=1).order_by('-year','-month_number')[:12]
+    logo = Image.objects.get(title='calvinandhobbes')
+    context = {'latest_posts': latest_posts, 'logo':logo,}
     return render(request, 'amonthatatime/archive.html', context)
 
-#post
+#Post
 def post(request, year, month):
     post = Post.objects.get(month=month,year=year,status=1)
     photos = PostImage.objects.filter(post=post)
+    logo = Image.objects.get(title='calvinandhobbes')
 
     context = {
         'post': post,
         'photos':photos,
+        'logo':logo,
         }
     return render(request, 'amonthatatime/post.html', context)
 
