@@ -70,7 +70,8 @@ class Post(models.Model):
     def send(self, request):
 
         photos = PostImage.objects.filter(post=self)
-        contents = t_loader.get_template('amonthatatime/newsletter.html').render({'post':self,'photos':photos,})
+        logo = Image.objects.get(title='calvinandhobbes')
+        contents = t_loader.get_template('amonthatatime/newsletter.html').render({'post':self,'photos':photos,'logo':logo})
         subscribers = Subscriber.objects.filter(confirmed=True)
         sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
 
@@ -78,7 +79,7 @@ class Post(models.Model):
             message = Mail(
                     from_email=settings.FROM_EMAIL,
                     to_emails=sub.email,
-                    subject='A month at a Time - {month} {year}: {title}'.format(month=self.month ,year=self.year,title=self.title),
+                    subject='{month} {year}: {title}'.format(month=self.month.capitalize() ,year=self.year,title=self.title.capitalize()),
                     html_content=contents + (
                         '<br><a href="{}/delete/?email={}&conf_num={}">Unsubscribe</a>.').format(
                             request.build_absolute_uri('/delete/'),
