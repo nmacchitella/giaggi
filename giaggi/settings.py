@@ -137,6 +137,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 FROM_EMAIL = os.environ.get('FROM_EMAIL')
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 
 MEDIA_URL = '/amonthatatime/static/amonthatatime/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'amonthatatime/static/amonthatatime/images/')
