@@ -37,8 +37,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 #    DEBUG = False
 
 DEBUG=False
-
 DEBUG_PROPAGATE_EXCEPTIONS = True
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'giaggi.herokuapp.com']
 
 
@@ -136,6 +136,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+FROM_EMAIL = os.environ.get('FROM_EMAIL')
 
 MEDIA_URL = '/amonthatatime/static/amonthatatime/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'amonthatatime/static/amonthatatime/images/')
