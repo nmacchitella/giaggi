@@ -11,15 +11,6 @@ from .models import Subscriber
 from .forms import SubscriberForm
 from .pythonsupport.views import random_digits
 
-#import cloudinary
-#import cloudinary.uploader
-#import cloudinary.api
-
-#{% load cloudinary %}
-
-
-
-
 
 # Create your views here.
 

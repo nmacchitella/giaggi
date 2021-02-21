@@ -27,14 +27,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
+
 
 # Extra places for collectstatic to find static files.
 #STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, 'static'),
+    #os.path.join(BASE_DIR, 'static'),
+     #os.path.join(BASE_DIR, 'amonthatatime/static'),
 #)
 
-
+MEDIA_URL = '/amonthatatime/static/amonthatatime/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'amonthatatime/static/amonthatatime/images/')
 
 
 # Quick-start development settings - unsuitable for production
@@ -47,7 +50,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 
@@ -163,5 +166,5 @@ import django_on_heroku
 django_on_heroku.settings(locals())
 
 # Override production variables if DJANGO_DEVELOPMENT env variable is set
-if os.environ.get('DJANGO_DEVELOPMENT'):
-    from .settings_dev import *  # or specific overrides
+#if os.environ.get('DJANGO_DEVELOPMENT'):
+#    from .settings_dev import *  # or specific overrides
