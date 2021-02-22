@@ -41,7 +41,7 @@ def subscribe(request):
         sub = Subscriber(email=request.POST['email'], conf_num=random_digits())
         sub.save()
         message = Mail(
-            from_email=settings.FROM_EMAIL,
+            from_email=(settings.FROM_EMAIL,'A Month at a Time'),
             to_emails=sub.email,
             subject='Newsletter Confirmation',
             html_content='Thank you for signing up for my email newsletter! \
