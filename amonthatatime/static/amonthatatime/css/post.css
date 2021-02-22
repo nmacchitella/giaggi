@@ -8,15 +8,6 @@ body {
   font-size:1em;
   color: #4D4D4D;
   }
-.navigation {
-  font-size:0.8em;
-  margin-bottom:2.3vw;
-}
-.mytitle {
-  margin-bottom:1vw;
-  font-size:1.4em;
-  font-weight:normal;
-}
 
 hr {
   margin-bottom:1vw;
@@ -33,14 +24,6 @@ a:link {
   color: #0168DA;
   text-decoration: none;
 }
-
-.menu {
-  margin-top: 6em;
-  margin-bottom: 5em;
-  font-size:0.8em;
-  padding-top:3em;
-}
-
 
 ul {
   font-family:Georgia;
@@ -101,9 +84,6 @@ ul {
 
 
 
-
-
-
 /* footer */
 
 .footer-basic {
@@ -151,4 +131,24 @@ ul {
 
 .list-inline > li {
     display: inline;
+    margin: 0;
+}
+
+
+/* other */
+.menu {
+  margin-top: 6em;
+  margin-bottom: 5em;
+  font-size:0.8em;
+  padding-top:3em;
+}
+
+.navigation {
+  font-size:0.8em;
+  margin-bottom:2.3vw;
+}
+.mytitle {
+  margin-bottom:1vw;
+  font-size:1.4em;
+  font-weight:normal;
 }

@@ -81,7 +81,7 @@ class Post(models.Model):
                     to_emails=sub.email,
                     subject='{month} {year}: {title}'.format(month=self.month.capitalize() ,year=self.year,title=self.title.capitalize()),
                     html_content=contents + (
-                        '<br><a href="{}/delete/?email={}&conf_num={}">Unsubscribe</a>.').format(
+                        '<ul class="list-inline" style="padding=3px"><li class="list-inline-item"><a style="font-size:0.85em; font-family:Georgia;color: #aaa;  text-decoration: none;" href="{}/delete/?email={}&conf_num={}">Unsubscribe</a></li></ul> </div> </body> </html>').format(
                             request.build_absolute_uri('/delete/'),
                             sub.email,
                             sub.conf_num))

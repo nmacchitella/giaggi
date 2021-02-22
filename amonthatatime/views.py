@@ -36,7 +36,7 @@ def post(request, year, month):
 
 #Subscribe
 @csrf_exempt
-def subcribe(request):
+def subscribe(request):
     if request.method == 'POST':
         sub = Subscriber(email=request.POST['email'], conf_num=random_digits())
         sub.save()

@@ -10,7 +10,7 @@ urlpatterns = [
     # ex: /2021/january/
     path('<int:year>/<str:month>/', views.post, name='post'),
     #subscribers
-    path('subcribe/', views.subcribe, name='subcribe'),
+    path('subscribe/', views.subscribe, name='subscribe'),
     path('confirm/', views.confirm, name='confirm'),
     path('delete/', views.delete, name='delete'),
 
