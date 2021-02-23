@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+    <head>
+      {% load static %}
+
+      <title>A Month at a Time - Newsletter</title>
+      <link rel="icon" href="https://res.cloudinary.com/giaggi/image/upload/v1613837471/amonthatatime/images/general/calvinandhobbes.png">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="An unsolicited stream of consciousness you totally never asked for">
+      <meta property="og:title" content="A Month at a Time - Newsletter" />
+      <!--<meta property="og:url" content="https://www.example.com/webpage/" /> -->
+      <meta property="og:description" content="An unsolicited stream of consciousness you totally never asked for">
+      <meta property="og:image" content="https://res.cloudinary.com/giaggi/image/upload/v1613837471/amonthatatime/images/general/calvinandhobbes.png">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" type="text/css" href="{% static 'amonthatatime/css/subscribe.css' %}">
+
+
+    </head>
+    <body>
+      <div class="">
+        <p align="center", style="margin-bottom: 11em;">
+          <br /> <span style="color:#B02E25;font-size:2em;">A Month at a Time</span>
+          <br /><span style="color:#4D4D4D;font-size:1.3em;">Subscribtion</span>
+          <br /><span style="color:#4D4D4D;font-size:0.9em;">...Kind of...</span>
+
+        </p>
+
+      </div>
+        {% if action == 'unknown' %}
+        <div class="" style="position: relative; margin-top: 10em;">
+          <div class="" style="display:flex;justify-content:center; align-items: center;">
+              <form method="post" novalidate>
+                  {% csrf_token %}
+                  {{ form }}
+                  <br>
+                  <button onclick="setLocation()" type="submit">subscribe</button>
+              </form>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if action == 'just_subscribed' %}
+        <div class="" style="position: relative; margin-top: 10em;">
+            <div class="col-12" style="  display: flex;  justify-content: center; align-items: center;">
+                <div class="" style="display:flex;justify-content:center; align-items: center;">
+                    <p style="text-align: center; ">Yep, I now have your email. Good luck!
+                      <br>{{ email }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if action == 'existing' %}
+        <div class="" style="position: relative; margin-top: 10em;">
+            <div class="col-12" style="  display: flex;  justify-content: center; align-items: center;">
+                <div class="" style="display:flex;justify-content:center; align-items: center;">
+                    <p style="text-align: center; ">Looks like I already have your email. Good Luck!
+                      <br>{{ email }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% if action == 'confirmed' %}
+        <div class="" style="position: relative; margin-top: 10em;">
+            <div class="col-12" style="  display: flex;  justify-content: center; align-items: center;">
+                <div class="" style="display:flex;justify-content:center; align-items: center;">
+                    <p style="text-align: center; ">You are confirmed! I know, you shouldn't have done that.
+                      <br>{{ email }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if action == 'denied' %}
+        <div class="" style="position: relative; margin-top: 10em;">
+            <div class="col-12" style="  display: flex;  justify-content: center; align-items: center;">
+                <div class="" style="display:flex;justify-content:center; align-items: center;">
+                    <p style="text-align: center; ">I'll be honest with you, I have no idea how you got here. Like for real.
+                      <br> I coded this error screen just because someone online told me to.
+                      <br> If you get here, ping me. Please.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+        {% if action == 'unsubscribed' %}
+        <div class="" style="position: relative; margin-top: 10em;">
+            <div class="col-12" style="  display: flex;  justify-content: center; align-items: center;">
+                <div class="" style="display:flex;justify-content:center; align-items: center;">
+                    <p style="text-align: center; ">You did the right thing. You won't be spammed again.
+                      <br>{{ email }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+<div style="position:absolute; bottom:0.5em; width:75.8%">
+<div class="footer-basic">
+  <hr align='left'>
+        <footer>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a style="color:#7f0000" href="/amonthatatime/" target="">Go To All Months</a></li>
+            </ul>
+        </footer>
+    </div>
+</div>
+  </body>
+</html>

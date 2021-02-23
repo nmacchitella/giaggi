@@ -12,6 +12,6 @@ urlpatterns = [
     #subscribers
     path('subscribe/', views.subscribe, name='subscribe'),
     path('confirm/', views.confirm, name='confirm'),
-    path('delete/', views.delete, name='delete'),
+    path('unsubscribe/', views.delete, name='unsubscribe'),
 
 ]

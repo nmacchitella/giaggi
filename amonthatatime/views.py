@@ -10,6 +10,8 @@ from sendgrid.helpers.mail import Mail
 from .models import Subscriber
 from .forms import SubscriberForm
 from .pythonsupport.views import random_digits
+from django.db import IntegrityError
+
 
 
 # Create your views here.
@@ -37,40 +39,54 @@ def post(request, year, month):
 #Subscribe
 @csrf_exempt
 def subscribe(request):
-    if request.method == 'POST':
-        sub = Subscriber(email=request.POST['email'], conf_num=random_digits())
-        sub.save()
-        message = Mail(
-            from_email=(settings.FROM_EMAIL,'A Month at a Time'),
-            to_emails=sub.email,
-            subject='Newsletter Confirmation',
-            html_content='Thank you for signing up for my email newsletter! \
-                Please complete the process by \
-                <a href="{}/confirm/?email={}&conf_num={}"> clicking here to \
-                confirm your registration</a>.'.format(request.build_absolute_uri('/amonthatatime'),
-                                                    sub.email,
-                                                    sub.conf_num))
-        sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
-        response = sg.send(message)
-        return render(request, 'amonthatatime/index.html', {'email': sub.email, 'action': 'added', 'form': SubscriberForm()})
-    else:
-        return render(request, 'amonthatatime/index.html', {'form': SubscriberForm()})
+    try:
+        if request.method == 'POST':
+            sub = Subscriber(email=request.POST['email'], conf_num=random_digits())
+            sub.save()
+            message = Mail(
+                from_email=(settings.FROM_EMAIL,'A Month at a Time'),
+                to_emails=sub.email,
+                subject='Newsletter Confirmation',
+                html_content='Thank you for signing up for my email newsletter! \
+                    Please complete the process by \
+                    <a href="{}/confirm/?email={}&conf_num={}"> clicking here to \
+                    confirm your registration</a>.'.format(request.build_absolute_uri('/amonthatatime'),
+                                                        sub.email,
+                                                        sub.conf_num))
+            sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
+            response = sg.send(message)
+            return render(request, 'amonthatatime/subscribe.html', {'email': sub.email,'action':'just_subscribed'})
+        else:
+            return render(request, 'amonthatatime/subscribe.html', {'form': SubscriberForm(), 'action':'unknown'})
+    except IntegrityError as e:
+        return render(request, 'amonthatatime/subscribe.html', {'email': sub.email,'action':'existing'})
+    except KeyError as e:
+        return render(request, 'amonthatatime/subscribe.html', {'action': 'denied'})
+
+
+
 
 #confirm subscription
 def confirm(request):
-    sub = Subscriber.objects.get(email=request.GET['email'])
-    if sub.conf_num == request.GET['conf_num']:
-        sub.confirmed = True
-        sub.save()
-        return render(request, 'amonthatatime/index.html', {'email': sub.email, 'action': 'confirmed'})
-    else:
-        return render(request, 'amonthatatime/index.html', {'email': sub.email, 'action': 'denied'})
+    try:
+        sub = Subscriber.objects.get(email=request.GET['email'])
+        if sub.conf_num == request.GET['conf_num']:
+            sub.confirmed = True
+            sub.save()
+            return render(request, 'amonthatatime/subscribe.html', {'email': sub.email, 'action': 'confirmed'})
+        else:
+            return render(request, 'amonthatatime/subscribe.html', {'email': sub.email, 'action': 'denied'})
+    except KeyError as e:
+        return render(request, 'amonthatatime/subscribe.html', {'action': 'denied'})
 
 #delete subscription
 def delete(request):
-    sub = Subscriber.objects.get(email=request.GET['email'])
-    if sub.conf_num == request.GET['conf_num']:
-        sub.delete()
-        return render(request, 'amonthatatime/index.html', {'email': sub.email, 'action': 'unsubscribed'})
-    else:
-        return render(request, 'amonthatatime/index.html', {'email': sub.email, 'action': 'denied'})
+    try:
+        sub = Subscriber.objects.get(email=request.GET['email'])
+        if sub.conf_num == request.GET['conf_num']:
+            sub.delete()
+            return render(request, 'amonthatatime/subscribe.html', {'email': sub.email, 'action': 'unsubscribed'})
+        else:
+            return render(request, 'amonthatatime/subscribe.html', {'email': sub.email, 'action': 'denied'})
+    except KeyError as e:
+        return render(request, 'amonthatatime/subscribe.html', {'action': 'denied'})
