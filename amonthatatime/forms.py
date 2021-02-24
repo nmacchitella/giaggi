@@ -7,4 +7,4 @@ from .models import PostImage
 class SubscriberForm(forms.Form):
     email = forms.EmailField(label='',
                              max_length=100,
-                             widget=forms.EmailInput(attrs={'class': '', 'placeholder':'Email you want to spam'}))
+                             widget=forms.EmailInput(attrs={'class': '', 'placeholder':'Email'}))
