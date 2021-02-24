@@ -11,6 +11,8 @@ from .models import Subscriber
 from .forms import SubscriberForm
 from .pythonsupport.views import random_digits
 from django.db import IntegrityError
+import django.template.loader as t_loader
+
 
 
 
@@ -43,16 +45,15 @@ def subscribe(request):
         if request.method == 'POST':
             sub = Subscriber(email=request.POST['email'], conf_num=random_digits())
             sub.save()
+            logo = Image.objects.get(title='calvinandhobbes')
+            confirmation=t_loader.get_template('amonthatatime/confirmation.html').render({'url':request.build_absolute_uri('/amonthatatime'),'email':sub.email,'logo':logo,'conf_num':sub.conf_num})
+
             message = Mail(
                 from_email=(settings.FROM_EMAIL,'A Month at a Time'),
                 to_emails=sub.email,
-                subject='Newsletter Confirmation',
-                html_content='Thank you for signing up for my email newsletter! \
-                    Please complete the process by \
-                    <a href="{}/confirm/?email={}&conf_num={}"> clicking here to \
-                    confirm your registration</a>.'.format(request.build_absolute_uri('/amonthatatime'),
-                                                        sub.email,
-                                                        sub.conf_num))
+                subject='A Month at a Time - Email Confirmation',
+                html_content=confirmation)
+
             sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
             response = sg.send(message)
             return render(request, 'amonthatatime/subscribe.html', {'email': sub.email,'action':'just_subscribed'})

@@ -1,0 +1,89 @@
+<html>
+<head>
+<style>
+/* footer */
+.footer-basic {
+  padding:40px 0;
+  margin-top: 5em;
+  background-color:#ffffff;
+  color:#4b4c4d;
+}
+
+.footer-basic ul {
+  padding:0;
+  list-style:none;
+  text-align:center;
+  font-size:15px;
+  line-height:1.6;
+  margin-bottom:0;
+}
+
+.footer-basic li {
+  padding:0 10px;
+}
+
+.footer-basic ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.footer-basic ul a:hover {
+  opacity:1;
+}
+
+.footer-basic .copyright {
+  margin-top:15px;
+  text-align:center;
+  font-size:13px;
+  color:#aaa;
+  margin-bottom:0;
+}
+
+.list-inline {
+    list-style: none;
+    padding: 0;
+}
+
+.list-inline > li {
+    display: inline;
+}
+
+/*link*/
+
+
+
+</style>
+
+<title>A Month at a Time</title>
+<link rel="icon" href="{{logo.urls}}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="{{post.title | safe | title }}">
+<meta property="og:title" content="A Month at a Time - {{post.month | safe | title }}" />
+<meta property="og:description" content="{{post.title | safe | title }}">
+<meta property="og:image" content="{{logo.urls}}">
+
+
+</head>
+  <body style="margin-left:5vw;margin-right:5vw;margin-top:3vw;margin-bottom:2vw;font-family:Georgia;font-size:1em;color: #4D4D4D;">
+    <p align="center", style="margin-bottom: 4em;">
+      <br /> <span style="color:#B02E25;font-size:1.5em;">A Month at a Time</span>
+      <br /><span style="color:#4D4D4D;font-size:1em;">Confirmation Email</span>
+
+    </p>
+
+    <p>
+      If you want to receive a nonsense email about nonsense things until I get tired of writing or I die, go ahead and click the giant red button down here. Yes, I need to know you are a real person to send you my worthless content. I don't share nonsense informations with not-real people. I hope you understand.
+    </p>
+
+    <div class="" style="display:flex;justify-content:center;margin-top:50px;margin-bottom:70px;">
+      <a href="{{url}}/confirm/?email={{email}}&conf_num={{conf_num}}" target="_blank" style="background-color: #B02E25;border: 1px solid;border-color: rgba(77,77,77,0.25);border-radius: 10px;color: white;padding: 10px 30px;text-align: center;text-decoration: none;display: inline-block;font-family:Georgia;align-items:center;font-weight: lighter;font-size:16px;cursor:pointer;">I confirm I am real</a>
+    </div>
+
+    <p>
+      I appreciate your help in humiliating myself with this; I hope I will be able to return the favor one day. Also, if you didn't sign up for this and you are wondering what's going on, you probably gave your contacts to the wrong person and it arrived to me. Good luck.
+    </p>
+
+  </body>
+</html>
