@@ -3,7 +3,7 @@
 {% load static %}
 {% load template_extrafilter %}
 
-<title>A Month at a Time</title>
+<title>A Month at a Time - {{post.month | safe | title }} / {{post.year | safe }}</title>
 <link rel="stylesheet" type="text/css" href="{% static 'amonthatatime/css/post.css' %}">
 <link rel="icon" href="{{logo.urls}}">
 

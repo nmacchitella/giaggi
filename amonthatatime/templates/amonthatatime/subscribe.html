@@ -3,7 +3,7 @@
     <head>
       {% load static %}
 
-      <title>A Month at a Time - Newsletter</title>
+      <title>A Month at a Time - Subscribe</title>
       <link rel="icon" href="https://res.cloudinary.com/giaggi/image/upload/v1613837471/amonthatatime/images/general/calvinandhobbes.png">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="description" content="An unsolicited stream of consciousness you totally never asked for">
@@ -14,6 +14,16 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
       <link rel="stylesheet" type="text/css" href="{% static 'amonthatatime/css/subscribe.css' %}">
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-E63VBW043G"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-E63VBW043G');
+      </script>
 
 
     </head>
@@ -45,7 +55,7 @@
             <div class="col-12" style="  display: flex;  justify-content: center; align-items: center;">
                 <div class="" style="display:flex;justify-content:center; align-items: center;">
                     <p style="text-align: center; ">Yep, I now have your email. Good luck!
-                      <br>AH! Look out for a confirmation link. 
+                      <br>AH! Look out for a confirmation link.
                       <br>{{ email }}
                     </p>
                 </div>
