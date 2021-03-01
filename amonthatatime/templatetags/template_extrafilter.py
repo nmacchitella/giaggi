@@ -22,12 +22,13 @@ def picturegrid (photos, arg):
         else:
             column=arg
         for j in range(0,column):
-            html_dic[j]=html_dic[j]+'<img src="{url}">'.format(url=photos[i*arg+j].urls)
+            html_dic[j]=html_dic[j]+'<div class="container"> <img src="{url}"> <div class="overlay">{caption}</div> </div>'.format(url=photos[i*arg+j].urls,caption=photos[i*arg+j].caption)
 
     for i in range(0,arg):
         html=html+html_dic[i]+'</div>'
 
     html=html+'</div>'
+
 
 
     return mark_safe(html)
