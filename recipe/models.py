@@ -1,5 +1,4 @@
 from django.db import models
-from taggit.managers import TaggableManager
 import uuid
 
 
@@ -12,7 +11,6 @@ class Recipe(models.Model):
     servings = models.IntegerField()
     ingredient = models.TextField(blank=True, default=None, null=True)
     notes = models.TextField(blank=True, default=None, null=True)
-    tags = TaggableManager(blank=True)
 
 
     def __str__(self):

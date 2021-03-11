@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'django_summernote',
     'cloudinary',
     'recipe.apps.RecipeConfig',
-    'taggit',
 ]
 
 MIDDLEWARE = [

@@ -8,9 +8,8 @@ class ReferenceAdmin(admin.StackedInline):
     extra = 0
 
 class RecipeAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'servings', 'tags')
-    list_filter = ("tags",)
-    search_fields = ['title', 'tags']
+    list_display = ('title', 'servings')
+    search_fields = ['title']
     inlines = [ReferenceAdmin]
     summernote_fields = '__all__'
     class Meta:
