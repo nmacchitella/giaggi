@@ -53,8 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'amonthatatime.apps.AmonthatatimeConfig',
     'django_summernote',
-    'cloudinary',
-    'recipe.apps.RecipeConfig',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
