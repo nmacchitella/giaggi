@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'cloudinary',
     'recipe.apps.RecipeConfig',
     'taggit',
-    'nested_inline'
 ]
 
 MIDDLEWARE = [
