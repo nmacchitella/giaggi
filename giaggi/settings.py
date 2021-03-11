@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'amonthatatime.apps.AmonthatatimeConfig',
-    'recipe.apps.AmonthatatimeConfig',
+    'recipe.apps.RecipeConfig',
     'django_summernote',
     'cloudinary'
 ]
