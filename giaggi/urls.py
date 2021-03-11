@@ -22,6 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('amonthatatime/', include('amonthatatime.urls')),
     path('summernote/', include('django_summernote.urls')),
+    path('recipe/', include('recipe.urls')),
+
 ]
 
 if settings.DEBUG:
