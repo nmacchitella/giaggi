@@ -36,8 +36,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 #else:
 #    DEBUG = False
 
-DEBUG=True
-DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG=False
+#DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'giaggi.herokuapp.com']
 
