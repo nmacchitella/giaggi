@@ -36,7 +36,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 #else:
 #    DEBUG = False
 
-DEBUG=False
+DEBUG=True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'giaggi.herokuapp.com']
@@ -53,7 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'amonthatatime.apps.AmonthatatimeConfig',
     'django_summernote',
-    'cloudinary'
+    'cloudinary',
+    'recipe.apps.RecipeConfig',
+    'taggit',
+    'nested_inline'
 ]
 
 MIDDLEWARE = [
