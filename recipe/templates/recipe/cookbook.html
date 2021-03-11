@@ -1,0 +1,33 @@
+<html>
+<head>
+
+{% load static %}
+
+<title>Ricettarrio di Bacco</title>
+<link rel="stylesheet" type="text/css" href="{% static 'recipe/css/cookbook.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cibario">
+<meta property="og:title" content="Ricettarrio di Bacco" />
+<!--<meta property="og:url" content="https://www.example.com/webpage/" /> -->
+<meta property="og:description" content="Cibario">
+</head>
+
+<body>
+<div class="title">
+  Cookbook
+</div>
+
+
+<div class="cards">
+{% for recipe in all_recipes %}
+  <a href="/recipe/{{recipe.id}}",target="" >
+  <div class="card">
+    <p style=" margin-bottom:2px;margin-top:5px">{{ recipe.title }}</p>
+    <p style="opacity:0.5; font-style:italic; margin-top:0px">di {{ recipe.author }} </p>
+  </div>
+  </a>
+{% endfor %}
+</div>
+
+</body>
+</html>
