@@ -12,7 +12,7 @@ class AphorismAdmin(SummernoteModelAdmin):
 
 class IdeaAdmin(SummernoteModelAdmin):
     list_display = ('short_description', 'notes', 'updated_at')
-    summernote_fields = ['notes']
+    summernote_fields = ['notes','idea']
 
 
 
