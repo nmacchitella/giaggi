@@ -1,0 +1,49 @@
+body {
+  background-color: white;
+  margin-top:3em;
+  margin-bottom:3vw;
+  margin-left:12vw;
+  margin-right:12vw;
+  font-family:Gill Sans;
+  font-size:1em;
+  color: #4D4D4D;
+  }
+
+a:link {
+    text-decoration: none;
+}
+
+ul {
+  margin-top:4px;
+}
+
+.title {
+  font-size:3.4em;
+  margin-bottom: 50px;
+  text-align: center;
+  color: #2F327D;
+}
+
+.card {
+  background-color: white;
+  border-radius: 40px;
+  color: #4D4D4D;
+  padding: 1rem;
+  height: 4rem;
+  margin-bottom: 1em;
+}
+
+.card:hover {
+  background-color: #F7FC6A;
+  color: #2F327D;
+  padding: 1rem;
+  height: 4rem;
+}
+
+.cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
