@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import truncatechars
 
 # Create your models here.
 class Aphorism(models.Model):
@@ -19,6 +20,10 @@ class Idea(models.Model):
     notes = models.TextField(blank=True, default=None, null=True)
     created_at = models.DateTimeField(auto_now_add=True,  null=True)
     updated_at = models.DateTimeField(auto_now=True,  null=True)
+
+    @property
+    def short_description(self):
+        return truncatechars(self.idea, 100)
 
     def __str__(self):
         return self.idea
