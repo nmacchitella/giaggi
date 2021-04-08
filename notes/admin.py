@@ -7,7 +7,7 @@ from django_summernote.admin import SummernoteModelAdmin
 class AphorismAdmin(SummernoteModelAdmin):
     list_display = ('author', 'aphorism', 'updated_at')
     search_fields = ['aphorism', 'author']
-    #summernote_fields = '__all__'
+    summernote_fields = ['notes']
 
 class IdeaAdmin(SummernoteModelAdmin):
     list_display = ('idea', 'notes', 'updated_at')

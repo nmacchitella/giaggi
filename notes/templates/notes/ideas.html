@@ -23,9 +23,8 @@
 
 {% for idea in all_ideas %}
 <div style="margin-bottom:40px;">
-  <p style="margin-bottom:20px;margin-top:5px"> {{idea.idea | safe }}</p>
-  <p style="opacity:0.5; font-style:italic; margin-top:0px"> {{idea.notes | safe }}</p>
-  <hr>
+  <hr style="opacity:0.5; ">
+  <p style="margin-top:3px;  margin-bottom:5px;"> {{idea.idea | safe }}</p>
 </div>
 
 {% endfor %}

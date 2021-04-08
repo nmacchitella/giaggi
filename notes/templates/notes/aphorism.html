@@ -22,8 +22,9 @@
   </div>
 
 {% for aphorism in all_aphorism %}
-  <p style="margin-bottom:20px;margin-top:5px"> {{aphorism.aphorism | safe }}</p>
-  <p style="opacity:0.5; font-style:italic; margin-top:0px"> {{aphorism.author | safe }}</p>
+  <p style="margin-bottom:2px;margin-top:5px"> {{aphorism.aphorism | safe }}</p>
+  <p style="opacity:0.5; font-style:italic; margin-top:0px; margin-bottom:4px;"> {{aphorism.author | safe }}</p>
+  <hr style="opacity:0.5; margin-bottom:35px; margin-top:5px;">
 {% endfor %}
 
 
