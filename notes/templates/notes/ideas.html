@@ -1,0 +1,47 @@
+<html>
+<head>
+
+{% load static %}
+
+<title>Zibaldone - Images 'n Ideas</title>
+<link rel="stylesheet" type="text/css" href="{% static 'notes/css/ideas.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Zibaldone">
+<meta property="og:title" content="Zibaldone" />
+<!--<meta property="og:url" content="https://www.example.com/webpage/" /> -->
+<meta property="og:description" content="Zibaldone">
+</head>
+
+<body>
+  <div class="title">
+    Zibaldone
+  </div>
+
+  <div class="subtitle">
+    Images 'n Ideas
+  </div>
+
+{% for idea in all_ideas %}
+<div style="margin-bottom:40px;">
+  <p style="margin-bottom:20px;margin-top:5px"> {{idea.idea | safe }}</p>
+  <p style="opacity:0.5; font-style:italic; margin-top:0px"> {{idea.notes | safe }}</p>
+  <hr>
+</div>
+
+{% endfor %}
+
+
+</body>
+
+<div style="position:flex; bottom:0.5em;">
+  <div class="footer-basic">
+          <footer>
+              <ul class="list-inline" style="margin:3px" >
+                  <li class="list-inline-item"><a style="font-family:Georgia;color: #0168DA;" href="/notes">Zibaldone</a></li>
+              </ul>
+              <!-- <p class="copyright">A month at a Time</p> -->
+          </footer>
+      </div>
+</div>
+
+</html>
