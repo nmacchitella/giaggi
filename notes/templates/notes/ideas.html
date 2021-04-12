@@ -24,6 +24,9 @@
 {% for idea in all_ideas %}
 <div style="margin-bottom:40px;">
   <hr style="opacity:0.5; margin-bottom:0px; ">
+  <span style="font-weight:bold">{{idea.title | safe }}</span>
+  <br>
+  <br>
   {{idea.idea | safe }}
 </div>
 

@@ -16,6 +16,7 @@ class Aphorism(models.Model):
 
 class Idea(models.Model):
     #id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title = models.CharField(max_length=200, default = None, null=True)
     idea = models.TextField(blank=True, default=None, null=True)
     notes = models.TextField(blank=True, default=None, null=True)
     created_at = models.DateTimeField(auto_now_add=True,  null=True)
@@ -23,7 +24,7 @@ class Idea(models.Model):
 
     @property
     def short_description(self):
-        return truncatechars(self.idea, 100)
+        return truncatechars(self.title, 100)
 
     def __str__(self):
-        return self.idea
+        return self.title
