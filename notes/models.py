@@ -16,7 +16,7 @@ class Aphorism(models.Model):
 
 class Idea(models.Model):
     #id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=200, default = None, null=True)
+    title = models.CharField(max_length=200, default = "None", null=True)
     idea = models.TextField(blank=True, default=None, null=True)
     notes = models.TextField(blank=True, default=None, null=True)
     created_at = models.DateTimeField(auto_now_add=True,  null=True)
